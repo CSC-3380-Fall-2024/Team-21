@@ -18,7 +18,7 @@ namespace Tiger_Tasks.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var posts = await _context.ForumPosts.Include(posts => p.User).ToListAsync();
+            var posts = await _context.ForumPosts.Include(p => p.User).ToListAsync();
             return View(posts);
         }
         public IActionResult Create()

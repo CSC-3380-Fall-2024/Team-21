@@ -10,5 +10,7 @@ namespace Tiger_Tasks.Data
             : base(options)
         {
         }
+
+        public DbSet<ForumPost> ForumPosts{ get; set; }
     }
 }

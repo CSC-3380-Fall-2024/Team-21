@@ -1,0 +1,25 @@
+@model List<Tiger_Tasks.Models.DirectConversationModel>
+
+<h2>Direct Messages</h2>
+
+@if (Model.Count == 0)
+{
+    <p>No conversations available.</p>
+}
+else
+{
+    <ul>
+        @foreach (var conversation in Model)
+        {
+            <li>
+                <strong>@conversation.User1</strong> and <strong>@conversation.User2</strong>
+                <ul>
+                    @foreach (var message in conversation.Messages)
+                    {
+                        <li>@message.Sender: @message.MessageContent (@message.Timestamp)</li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+}

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Tiger_Tasks.Models.ForumPost>
+
+@{
+    ViewData["Title"] = "Forum";
+}
+
+<h2>Forum</h2>
+
+<div>
+    <a class="btn btn-primary" asp-action="Create">Create New Post</a> <!-- Link to create a new post -->
+</div>
+
+<hr />
+
+@if (!Model.Any())
+{
+    <p>No posts to display.</p>
+}
+else
+{
+    <div class="forum-posts">
+        @foreach (var post in Model)
+        {
+            <div class="forum-post">
+                <h4>@post.Title</h4>
+                <p>@post.Content</p>
+                <small>Posted on: @post.Created.ToString("g")</small>
+                <hr />
+            </div>
+        }
+    </div>
+}

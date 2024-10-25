@@ -4,6 +4,7 @@
 
 @if (Model.Count == 0)
 {
+    // Display a message if there are no conversations available
     <p>No conversations available.</p>
 }
 else
@@ -12,13 +13,31 @@ else
         @foreach (var conversation in Model)
         {
             <li>
+                // Display the names of the two users in this direct conversation
                 <strong>@conversation.User1</strong> and <strong>@conversation.User2</strong>
+
                 <ul>
                     @foreach (var message in conversation.Messages)
                     {
+                        // Display each message with the sender's name, message content, and timestamp
                         <li>@message.Sender: @message.MessageContent (@message.Timestamp)</li>
                     }
                 </ul>
+
+                <!-- New Section: Message Input Form -->
+                <!-- This form allows users to type and send a new message within each conversation -->
+                <form method="post" asp-action="SendMessage" asp-controller="Message">
+                    <!-- Hidden inputs to pass the user1 and user2 values to the controller -->
+                    <input type="hidden" name="user1" value="@conversation.User1" />
+                    <input type="hidden" name="user2" value="@conversation.User2" />
+
+                    <!-- Input field for the message content -->
+                    <input type="text" name="messageContent" placeholder="Type your message here" required />
+                    
+                    <!-- Submit button to send the message -->
+                    <button type="submit">Send</button>
+                </form>
+                <!-- End of New Section -->
             </li>
         }
     </ul>

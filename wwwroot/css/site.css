@@ -20,3 +20,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.navbar-brand{
+  font-family: 'Bungee', sans-serif;
+  color: #D3BAE0 !important;
+  font-size: 1.5rem;
+}
+
+.stacked-name span{
+  display: block; /*Make each word stack on a separate line*/
+  line-height: 1;
+}
+
+.custom-bg{
+  background-color: #331d56;
+}

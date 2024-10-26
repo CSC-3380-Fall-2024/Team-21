@@ -21,6 +21,7 @@ body {
   margin-bottom: 60px;
 }
 
+
 .navbar-brand{
   font-family: 'Bungee', sans-serif;
   color: #D3BAE0 !important;
@@ -34,4 +35,14 @@ body {
 
 .custom-bg{
   background-color: #331d56;
+}
+body {
+    background: rebeccapurple;
+}
+
+h1, h2, h3, ul {
+    font-family: notable;
+    text-align: center;
+    color: gold;
+
 }

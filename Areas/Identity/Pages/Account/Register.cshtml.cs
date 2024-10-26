@@ -81,7 +81,15 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Major")]
-            public string Major { get; set; } 
+            public string Major { get; set; }
+
+            [Required]
+            [Display(Name = "Services Provided")]
+            public string ServicesProvided { get; set; }
+
+            [Required]
+            [Display(Name = "Services Needed")]
+            public string ServicesNeeded {  get; set; }
 
             [Required]
             [EmailAddress]
@@ -128,6 +136,8 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Major = Input.Major;
+                user.ServicesProvided = Input.ServicesProvided;
+                user.ServicesNeeded = Input.ServicesNeeded;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -173,6 +183,8 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
             user.Major = Input.Major;
+            user.ServicesProvided = Input.ServicesProvided;
+            user.ServicesNeeded = Input.ServicesNeeded;
 
             return user;
             /*try

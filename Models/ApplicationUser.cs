@@ -9,5 +9,8 @@ namespace Tiger_Tasks.Models
        
         public string Major { get; set; }
 
+        public string ServicesNeeded {  get; set; }
+
+        public string ServicesProvided { get; set; }
     }
 }

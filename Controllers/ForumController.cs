@@ -39,7 +39,7 @@ namespace Tiger_Tasks.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-            return View();
+            return View(post);
         }
     }
 }

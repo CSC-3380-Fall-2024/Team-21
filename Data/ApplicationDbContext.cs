@@ -12,5 +12,8 @@ namespace Tiger_Tasks.Data
         }
 
         public DbSet<ForumPost> ForumPosts{ get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<Service> Services { get; set; }
     }
 }

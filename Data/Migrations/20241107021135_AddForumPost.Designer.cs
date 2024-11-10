@@ -12,7 +12,7 @@ using Tiger_Tasks.Data;
 namespace Tiger_Tasks.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241025213239_AddForumPost")]
+    [Migration("20241107021135_AddForumPost")]
     partial class AddForumPost
     {
         /// <inheritdoc />
@@ -219,6 +219,14 @@ namespace Tiger_Tasks.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ServicesNeeded")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServicesProvided")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -254,19 +262,29 @@ namespace Tiger_Tasks.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PostType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SelectedPostType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SelectedServiceType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ForumPosts");
+                    b.ToTable("ForumPost");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -318,17 +336,6 @@ namespace Tiger_Tasks.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Tiger_Tasks.Models.ForumPost", b =>
-                {
-                    b.HasOne("Tiger_Tasks.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

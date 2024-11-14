@@ -5,9 +5,9 @@ namespace Tiger_Tasks.Models
     // Model representing an individual message
     public class MessageModel
     {
-        public string MessageContent { get; set; } // Content of the message
-        public string Sender { get; set; } // Sender's name or ID
-        public string Timestamp { get; set; } // Timestamp for when the message was sent
+        public string? MessageContent { get; set; } // Content of the message
+        public string? Sender { get; set; } // Sender's name or ID
+        public string? Timestamp { get; set; } // Timestamp for when the message was sent
     }
 
     // Model representing a direct conversation between two users

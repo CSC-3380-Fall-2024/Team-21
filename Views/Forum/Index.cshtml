@@ -1,32 +1,39 @@
-﻿@model IEnumerable<Tiger_Tasks.Models.ForumPost>
-
+﻿
+@model Tiger_Tasks.Models.ForumViewModel
 @{
     ViewData["Title"] = "Forum";
 }
-<!-- The view for all forum post to be seen -->
-<h2>Forum</h2>
 
-<div>
-    <a class="btn btn-primary" asp-action="Create">Create New Post</a> <!-- Link to create a new post -->
-</div>
+<h1>Forum</h1>
 
-<hr />
+<a asp-action="Create" class="btn btn-success mb-3">Create New Forum Post</a>
 
-@if (!Model.Any())
-{
-    <p>No posts to display.</p>
-}
-else
-{
-    <div class="forum-posts">
-        @foreach (var post in Model)
+<form method="get" asp-action="Index">
+    <label for="postType">Filter by Type:</label>
+    <select name="postType" asp-for="SelectedPostType">
+        <option value="">All</option>
+        <option value="Help Wanted">Help Wanted</option>
+        <option value="Help Needed">Help Needed</option>
+    </select>
+
+    <label for="serviceType">Filter by Service:</label>
+    <select name="serviceType" asp-for="SelectedServiceType">
+        <option value="">All</option>
+        @foreach (var category in Model.ServiceCategories)
         {
-            <div class="forum-post">
-                <h4>@post.Title</h4>
-                <p>@post.Content</p>
-                <small>Posted on: @post.Created.ToString("g")</small>
-                <hr />
-            </div>
+            <option value="@category">@category</option>
         }
-    </div>
-}
+    </select>
+    
+    <button type="submit">Filter</button>
+</form>
+
+<ul>
+    @foreach (var post in Model.ForumPosts)
+    {
+        <li>
+            <strong>@post.Title</strong> - @post.PostType (@post.ServiceType)<br />
+            @post.Content
+        </li>
+    }
+</ul>

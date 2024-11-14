@@ -3,10 +3,11 @@ using System.Security.Claims;
 using Tiger_Tasks.Data;
 using Tiger_Tasks.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace Tiger_Tasks.Controllers
 {
-    //Controller allows the creation of a forum and manges the syncs to the database
+    // Controller allows the creation of a forum and manages synchronization with the database
     public class ForumController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,30 +17,69 @@ namespace Tiger_Tasks.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+
+        public IActionResult Index(string postType , string serviceType)
         {
-            var posts = await _context.ForumPosts.Include(p => p.User).ToListAsync();
-            return View(posts);
-        }
-        public IActionResult Create()
-        {
-            return View();
+            // Start with all forum posts from the database
+            var filteredPosts = _context.ForumPost.AsQueryable();
+
+            // Apply filters based on post type and service type
+            if (!string.IsNullOrEmpty(postType))
+            {
+                filteredPosts = filteredPosts.Where(p => p.PostType == postType);
+            }
+
+            if (!string.IsNullOrEmpty(serviceType))
+            {
+                filteredPosts = filteredPosts.Where(p => p.ServiceType == serviceType);
+            }
+
+            // Populate the ForumViewModel with filtered posts and other necessary data
+            var model = new ForumViewModel
+            {
+                ServiceCategories = new List<string> { "Tutoring", "IT Help", "Manual Labor", "Coding Help" },
+                SelectedServiceType = serviceType,
+                SelectedPostType = postType,
+                ForumPosts = filteredPosts.ToList()
+            };
+
+            return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var model = new ForumViewModel
+            {
+                ServiceCategories = ForumPost.ServiceCategories,
+                PostTypes = ForumPost.PostTypes
+            };
+            return View(model);
+        }
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ForumPost post)
+        public IActionResult Create(ForumPost post)
         {
             if (ModelState.IsValid)
             {
                 post.Created = DateTime.Now;
-                post.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-
+                _context.ForumPost.Add(post);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return View(post);
+
+            // Provide the list of categories and post types if there's an error or page reload
+            var model = new ForumViewModel
+            {
+                ServiceCategories = ForumPost.ServiceCategories,
+                PostTypes = ForumPost.PostTypes,
+                SelectedServiceType = post.ServiceType,
+                SelectedPostType = post.PostType,
+                ForumPosts = _context.ForumPost.ToList()
+            };
+
+            return View(model);
         }
     }
 }

@@ -136,8 +136,8 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Major = Input.Major;
-                user.ServicesProvided = Input.ServicesProvided;
-                user.ServicesNeeded = Input.ServicesNeeded;
+               // user.ServicesProvided = Input.ServicesProvided;
+               // user.ServicesNeeded = Input.ServicesNeeded;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -183,8 +183,8 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
             user.Major = Input.Major;
-            user.ServicesProvided = Input.ServicesProvided;
-            user.ServicesNeeded = Input.ServicesNeeded;
+           // user.ServicesProvided = Input.ServicesProvided;
+            //user.ServicesNeeded = Input.ServicesNeeded;
 
             return user;
             /*try

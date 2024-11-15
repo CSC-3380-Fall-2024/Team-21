@@ -38,6 +38,7 @@ namespace Tiger_Tasks.Controllers
             var model = new ForumViewModel
             {
                 ServiceCategories = new List<string> { "Tutoring", "IT Help", "Manual Labor", "Coding Help" },
+               // PostTypes = new List<string> { "Help Wanted", "Help Needed"},
                 SelectedServiceType = serviceType,
                 SelectedPostType = postType,
                 ForumPosts = filteredPosts.ToList()

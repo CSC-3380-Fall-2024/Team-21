@@ -9,6 +9,8 @@ namespace Tiger_Tasks.Data
     {
 
         [Required] public DbSet<ForumPost> ForumPost { get; set; }
+
+        public DbSet<Service> Services { get; set; }
        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

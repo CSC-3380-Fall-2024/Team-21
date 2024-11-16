@@ -6,17 +6,18 @@
 
 <h1>Forum</h1>
 
-<a asp-action="Create" class="btn btn-success mb-3">Create New Forum Post</a>
+<!-- Button to move user to the create forum page -->
+<a asp-action="Create" style=" color: gold; background-color: transparent; border:none; font-weight:bold;">Create New Forum Post</a>
 
 <form method="get" asp-action="Index">
-    <label for="postType">Filter by Type:</label>
+    <label for="postType" style=" color:gold; font-weight: bold;">Filter by Type:</label>
     <select name="postType" asp-for="SelectedPostType">
         <option value="">All</option>
         <option value="Help Wanted">Help Wanted</option>
         <option value="Help Needed">Help Needed</option>
     </select>
 
-    <label for="serviceType">Filter by Service:</label>
+    <label for="serviceType" style=" color:gold; font-weight: bold">Filter by Service:</label>
     <select name="serviceType" asp-for="SelectedServiceType">
         <option value="">All</option>
         @foreach (var category in Model.ServiceCategories)
@@ -24,8 +25,8 @@
             <option value="@category">@category</option>
         }
     </select>
-    
-    <button type="submit">Filter</button>
+    <!-- Button to initae filtering(added styling) -->
+    <button type="submit" style=" color: gold; background-color: transparent; border: none;">Filter</button>
 </form>
 
 <ul>

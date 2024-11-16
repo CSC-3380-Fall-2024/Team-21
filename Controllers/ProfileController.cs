@@ -45,7 +45,7 @@ public class ProfileController : ControllerBase
 
     // POST: api/profile/{userId}/editBio
     [HttpPost("{userId}/editBio")]
-    public async Task<IActionResult> UpdateBio(string userId, [FromBody] ApplicationUser bioUpdate)
+    public async Task<IActionResult> UpdateBio(string userId, [FromForm] ApplicationUser bioUpdate)
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)

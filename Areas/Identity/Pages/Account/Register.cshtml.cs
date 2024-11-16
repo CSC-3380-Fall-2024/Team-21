@@ -187,7 +187,7 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account
             //user.ServicesNeeded = Input.ServicesNeeded;
 
             return user;
-            /*try
+           /* *try
             {
                 return Activator.CreateInstance<ApplicationUser>();
             }

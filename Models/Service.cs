@@ -12,5 +12,9 @@ public class Service
     
     // Optional navigation property
     public ApplicationUser? User { get; set; }
+
+    public string? ProviderUserId { get; set; }
+
+    public ApplicationUser? ProviderUser { get; set; }
 }
 }

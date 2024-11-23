@@ -13,6 +13,7 @@ namespace Tiger_Tasks.Models
         public string? Minor { get; set; }
 
         public string? Extracurriculars { get; set; }
-        
+        public ICollection<Service> NeededServices { get; set; } = new List<Service>();
+        public ICollection<Service> ProvidedServices { get; set; } = new List<Service>();
     }
 }

@@ -22,10 +22,11 @@ body {
 }
 
 
-.navbar-brand{
-  font-family: 'Bungee', sans-serif;
-  color: #D3BAE0 !important;
-  font-size: 1.5rem;
+.navbar-brand {
+    font-family: 'Bungee', sans-serif;
+    color: #D3BAE0 !important;
+    font-size: 1.5rem;
+   
 }
 
 .stacked-name span{
@@ -82,4 +83,42 @@ h1, h2, h3, ul {
   /* Adds space between button and text */
   gap: 20px; 
 }
+
+a {
+    color: gold;
+}
+    a:hover {
+        color: white; 
+    }
+    a:visited {
+        color: gold; 
+    }
+    a:active {
+        color: black;
+    }
+
+
+/* Styling for the register button */
+#registerSubmit {
+    width: 100%; /* Full-width button */
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: gold;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+ #registerSubmit:hover {
+    background-color: darkgoldenrod; 
+    }
+
+/* Styling for the login link */
+.text-primary {
+    color: gold !important; 
+}
+
+
 

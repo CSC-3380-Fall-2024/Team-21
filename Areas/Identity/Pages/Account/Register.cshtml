@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Register";
 }
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
 <h1>@ViewData["Title"]</h1>
-
+<body class="register-page">
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -36,6 +39,8 @@
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
+
+        <!--
         <section>
             <h3>Use another service to register.</h3>
             <hr />
@@ -64,8 +69,10 @@
                 }
             }
         </section>
+            -->
     </div>
 </div>
+</body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -46,3 +46,22 @@ h1, h2, h3, ul {
     color: gold;
 
 }
+
+
+
+/*login page
+.login-page {
+    display: flex;
+    flex-direction: column;  ?*Align vertically 
+    justify-content: center; /* Center vertically 
+    align-items: center; /* Center horizontally 
+    height: 100vh; /* Full viewport height 
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: gold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+*/

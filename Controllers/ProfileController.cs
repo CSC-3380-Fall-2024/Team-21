@@ -14,9 +14,9 @@ namespace Tiger_Tasks.Controllers
 [Route("api/[controller]")]
 public class ProfileController : ControllerBase
 {
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly UserManager<ProfileModel> _userManager;
 
-    public ProfileController(UserManager<ApplicationUser> userManager)
+    public ProfileController(UserManager<ProfileModel> userManager)
     {
         _userManager = userManager;
     }
@@ -45,7 +45,7 @@ public class ProfileController : ControllerBase
 
     // POST: api/profile/{userId}/editBio
     [HttpPost("{userId}/editBio")]
-    public async Task<IActionResult> UpdateBio(string userId, [FromForm] ApplicationUser bioUpdate)
+    public async Task<IActionResult> UpdateBio(string userId, [FromForm] ProfileModel bioUpdate)
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)

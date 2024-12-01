@@ -7,7 +7,7 @@ namespace Tiger_Tasks.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<ForumPost> ForumPost { get; set; }
+      
         public DbSet<Service> Services { get; set; }
         public DbSet<ProfileModel> Profiles { get; set; }  // Add ProfileDbSet for profiles
 
@@ -54,5 +54,6 @@ namespace Tiger_Tasks.Data
 
             // Add any other custom configurations for your entities here
         }
+        public DbSet<Tiger_Tasks.Models.ForumPost> ForumPost { get; set; } = default!;
     }
 }

@@ -20,7 +20,7 @@ public class ServiceController : ControllerBase
         _context = context;
     }
 
-    // GET: api/service/{userId}
+    // GET: api/service/{userId}        // This obtains the Services 
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetServices(string userId)
     {
@@ -41,7 +41,7 @@ public class ServiceController : ControllerBase
         });
     }
 
-    // POST: api/service/add
+    // POST: api/service/add        // This allows the user to add services
     [HttpPost("add")]
     public async Task<IActionResult> AddService([FromBody] Service newService)
     {
@@ -56,7 +56,7 @@ public class ServiceController : ControllerBase
         return Ok(new { message = "Service added successfully" });
     }
 
-    // DELETE: api/service/delete/{serviceId}
+    // DELETE: api/service/delete/{serviceId}       // this allows the user to delete services
     [HttpDelete("delete/{serviceId}")]
     public async Task<IActionResult> DeleteService(int serviceId)
     {

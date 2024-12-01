@@ -21,7 +21,7 @@ public class ProfileController : ControllerBase
         _userManager = userManager;
     }
 
-    // GET: api/profile/{userId}
+    // GET: api/profile/{userId}        // gets the user their profile
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetProfile(string userId)
     {
@@ -43,7 +43,7 @@ public class ProfileController : ControllerBase
         });
     }
 
-    // POST: api/profile/{userId}/editBio
+    // POST: api/profile/{userId}/editBio       // allows the user to update bio
     [HttpPost("{userId}/editBio")]
     public async Task<IActionResult> UpdateBio(string userId, [FromForm] ProfileModel bioUpdate)
     {

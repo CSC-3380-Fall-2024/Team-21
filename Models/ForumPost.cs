@@ -14,7 +14,7 @@
     public enum PostType
     {
         HelpWanted,
-        HelpNeeded
+        HelpOffered
     }
 
 }

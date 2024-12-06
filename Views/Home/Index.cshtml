@@ -1,8 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    body{
+    background-color: #331D56;
+    color: white;
+    }
+</style>
+
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4" style="font-weight: bold;">Welcome</h1>
+    <p>Welcome to Tiger Task! Your campus-based platform for getting task done. Whether you need help with tutoring, moving, or side
+        gigs, Tiger Task connects students like you to the resources you need. Simplify your to-do list and let the Tiger Tasks community lend a hand!
+    </p>
+</div>
+
+<div class="logo-container">
+    <img src="https://th.bing.com/th/id/R.5f523ad82206ca6fd835e9affc50ae59?rik=b1TfyEysRa8UlA&riu=http%3a%2f%2fgetdrawings.com%2fcliparts%2ftiger-clipart-18.png&ehk=2LTqFYUu5NaF3mMW7rf3iLl3SqTMKCWI791BTsApT8M%3d&risl=&pid=ImgRaw&r=0"
+         alt="Website Logo" class="logo" style="display: block; margin: 0 auto; max-width: 600px; height: auto;">
+</div>
+
+
+<div class = "button-container text-center">
+    <div class = "button-section">
+        <a href = "/Identity/Account/Register" class = "custom-button"> ✓ Register </a>
+        <div class = "button-sidetext"> Get Started with Tiger Tasks</div>
+    </div>
+    <div class = "button-section">
+         <a href = "/Identity/Account/Login" class = "custom-button"> ✓ Login </a>
+         <div class = "button-sidetext" > Already Have An Account? </div>
+    </div>
 </div>

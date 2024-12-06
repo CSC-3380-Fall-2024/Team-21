@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Tiger_Tasks.Models.ForumPost>
+
+@{
+    ViewData["Title"] = "Forum Posts";
+}
+
+<h1>Forum Posts</h1>
+
+<p>
+    <a class="btn btn-default" asp-action="Create" style="background-color: #D7BDF8; color: black;">Create New Post</a>
+</p>
+
+<!-- Filter Section -->
+<form method="get" class="mb-3">
+    <div class="form-group row">
+        <label for="filter" class="col-sm-2 col-form-label" style=" color:  gold">Filter By Post Type:</label>
+        <div class="col-sm-4">
+            <select name="filter" id="filter" class="form-control">
+                <option value="">-- All Posts --</option>
+                <option value="HelpWanted">Help Wanted</option>
+                <option value=" HelpOffered"> HelpOffered</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-default" style="background-color: #D7BDF8; color: black;">Filter</button>
+        </div>
+    </div>
+</form>
+
+<!-- Posts Table --> 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="color: gold; font-weight: bold;">@Html.DisplayNameFor(model => model.FirstOrDefault().Title)</th>
+            <th style="color: gold; font-weight: bold;">@Html.DisplayNameFor(model => model.FirstOrDefault().Description)</th>
+            <th style="color: gold; font-weight: bold;">Post Type</th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+
+        {
+         
+           
+            foreach (var item in Model)  
+
+            {
+                <tr>
+                    <td style = "color: gold; font-weight: bold;">@Html.DisplayFor(modelItem => item.Title) </td >
+                    <td style = "color: gold; font-weight: bold;">@Html.DisplayFor(modelItem => item.Description) </td>
+                    <td style = "color: gold; font-weight: bold;" >@item.PostType </td>
+                    <td>
+                        <a class="btn btn-default" style="background-color: #D7BDF8; color: black;" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-default" style="background-color: #D7BDF8; color: black;" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-default" style="background-color: #D7BDF8; color: black;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        }
+
+        else
+
+        {
+            <tr>
+                <td colspan="4" class="text-center">No posts available.</td>
+            </tr>
+        }
+    </tbody>
+</table>

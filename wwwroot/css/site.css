@@ -20,3 +20,195 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.navbar-brand {
+    font-family: 'Bungee', sans-serif;
+    color: #D3BAE0 !important;
+    font-size: 1.5rem;
+   
+}
+
+.stacked-name span{
+  display: block; /*Make each word stack on a separate line*/
+  line-height: 1;
+}
+
+.custom-bg{
+  background-color: #331d56;
+}
+body {
+    background: #331d56;
+}
+
+h1, h2, h3, ul {
+    font-family: notable;
+    text-align: center;
+    color: gold;
+
+}
+
+.custom-button{
+  display: inline-block; 
+  padding: 8px 15px; /* Adjust height and width */
+  font-size: 1.2em;
+  color: #110b1a;
+  background-color: #d7bdfa;
+  border-radius: 30px 0 0 30px; /* Rounded left side, straight right side */
+  text-decoration: none; /* Removes the underline from the text */ 
+  font-weight: bold;
+  text-align: center;
+  width: 250px;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+/*This is for the text on the side of the button*/
+.button-sidetext{
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Slackey', cursive;
+  color: #FFC700;
+}
+
+/*This for the text spacing */
+.button-section{
+  display: flex;
+  align-items: center;
+  /* Adds space between button and text */
+  gap: 20px; 
+}
+ implement-the-forum-page-design
+/*Forum */
+
+.forum-page{
+  background-color: #30124E;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Filters Section Styling */
+.filters{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filiters label{
+  color: gold;
+  font-weight: bold;
+  margin-right: 10px; /*Space between label and toggle */
+}
+
+.toggle{
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.toggle span{
+  margin: 0 10px; 
+}
+
+/*Forum Posts Section */
+.forum-posts{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
+
+/* Individual Post Item */
+.post{
+  display: flex;
+  align-items: flex-start;
+  background-color: #D3BAE0;
+  color: black;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/*Logo Placeholder */
+.avatar{
+  width: 50px;
+  height: 50px;
+  background-color: white; /*Netural color for icons */
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/*Post Content Styling */
+.post-details{
+  flex: 1;
+  
+}
+.post-title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.post-content{
+  margin: 5px 0;
+  font-size: 14px;
+  color: white; /*Regular text in white */
+}
+/* Add Post Button Section */
+.add-post{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.add-post-button{
+  background-color: gold;
+  color: #30124E;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold; 
+}
+
+a {
+    color: gold;
+}
+    a:hover {
+        color: white; 
+    }
+    a:visited {
+        color: gold; 
+    }
+    a:active {
+        color: black;
+    }
+
+
+/* Styling for the register button */
+#registerSubmit {
+    width: 100%; /* Full-width button */
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: gold;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+ #registerSubmit:hover {
+    background-color: darkgoldenrod; 
+    }
+
+/* Styling for the login link */
+.text-primary {
+    color: gold !important; 
+}
+
+ Development
+

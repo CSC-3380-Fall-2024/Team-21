@@ -7,6 +7,8 @@
         public string Description { get; set; }
         public PostType PostType { get; set; }
         public ServiceType ServiceType { get; set; }
+
+        public decimal Cost { get; set; } // Add Cost property
         public ForumPost() 
         {
 
@@ -25,4 +27,6 @@
         Tutoring,
         StudyGroup
     }
+   
+
 }

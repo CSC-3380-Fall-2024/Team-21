@@ -21,11 +21,13 @@ namespace Tiger_Tasks.Controllers
         }
 
         // GET: ForumPosts
-        public async Task<IActionResult> Index(PostType? postTypeFilter, ServiceType? serviceTypeFilter)
+        public async Task<IActionResult> Index(PostType? postTypeFilter, ServiceType? serviceTypeFilter,  decimal? maxCost)
         {
             // Pass the filter options to the view
             ViewData["PostTypes"] = new SelectList(Enum.GetValues(typeof(PostType)));
             ViewData["ServiceType"] = new SelectList(Enum.GetValues(typeof(ServiceType)));
+
+           
 
             var posts = _context.ForumPost.AsQueryable();
             //Logic for filtering post in the index view 
@@ -39,6 +41,14 @@ namespace Tiger_Tasks.Controllers
             {
                 posts = posts.Where(p => p.ServiceType == serviceTypeFilter);
             }
+
+       
+            // Filter by Maximum Cost
+            if (maxCost.HasValue)
+            {
+                posts = posts.Where(p => p.Cost <= maxCost.Value);
+            }
+
 
             return View(await posts.ToListAsync());
         }
@@ -72,7 +82,7 @@ namespace Tiger_Tasks.Controllers
         // POST: ForumPosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,PostType,ServiceType")] ForumPost forumPost)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,PostType,ServiceType,Cost")] ForumPost forumPost)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +116,7 @@ namespace Tiger_Tasks.Controllers
         // POST: ForumPosts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,PostType,ServiceType")] ForumPost forumPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,PostType,ServiceType,Cost")] ForumPost forumPost)
         {
             //Throws and error if the forum post Id value was not found
             if (id != forumPost.Id)

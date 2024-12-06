@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tiger_Tasks.Data;
 
@@ -11,9 +12,11 @@ using Tiger_Tasks.Data;
 namespace Tiger_Tasks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241206204127_mssql.azure_migration_688")]
+    partial class mssqlazure_migration_688
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,6 +170,10 @@ namespace Tiger_Tasks.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -178,11 +185,31 @@ namespace Tiger_Tasks.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Extracurriculars")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Major")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Minor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -232,9 +259,6 @@ namespace Tiger_Tasks.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -249,47 +273,15 @@ namespace Tiger_Tasks.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("ForumPost");
-                });
-
-            modelBuilder.Entity("Tiger_Tasks.Models.ProfileModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Extracurriculars")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Major")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Minor")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("ForumPost");
                 });
 
             modelBuilder.Entity("Tiger_Tasks.Models.Service", b =>
@@ -300,39 +292,23 @@ namespace Tiger_Tasks.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<bool>("IsOffered")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ProfileModelId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ProfileModelId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProviderUserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ServiceName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ServiceId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ProviderUserId");
 
-                    b.HasIndex("ApplicationUserId1");
-
-                    b.HasIndex("ProfileModelId");
-
-                    b.HasIndex("ProfileModelId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Services");
                 });
@@ -388,12 +364,12 @@ namespace Tiger_Tasks.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Tiger_Tasks.Models.ProfileModel", b =>
+            modelBuilder.Entity("Tiger_Tasks.Models.ForumPost", b =>
                 {
                     b.HasOne("Tiger_Tasks.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("Profile")
-                        .HasForeignKey("Tiger_Tasks.Models.ProfileModel", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
@@ -401,38 +377,17 @@ namespace Tiger_Tasks.Migrations
 
             modelBuilder.Entity("Tiger_Tasks.Models.Service", b =>
                 {
-                    b.HasOne("Tiger_Tasks.Models.ApplicationUser", null)
-                        .WithMany("NeededServices")
-                        .HasForeignKey("ApplicationUserId");
+                    b.HasOne("Tiger_Tasks.Models.ApplicationUser", "ProviderUser")
+                        .WithMany()
+                        .HasForeignKey("ProviderUserId");
 
-                    b.HasOne("Tiger_Tasks.Models.ApplicationUser", null)
-                        .WithMany("ProvidedServices")
-                        .HasForeignKey("ApplicationUserId1");
+                    b.HasOne("Tiger_Tasks.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("Tiger_Tasks.Models.ProfileModel", null)
-                        .WithMany("NeededServices")
-                        .HasForeignKey("ProfileModelId");
+                    b.Navigation("ProviderUser");
 
-                    b.HasOne("Tiger_Tasks.Models.ProfileModel", null)
-                        .WithMany("ProvidedServices")
-                        .HasForeignKey("ProfileModelId1");
-                });
-
-            modelBuilder.Entity("Tiger_Tasks.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("NeededServices");
-
-                    b.Navigation("Profile")
-                        .IsRequired();
-
-                    b.Navigation("ProvidedServices");
-                });
-
-            modelBuilder.Entity("Tiger_Tasks.Models.ProfileModel", b =>
-                {
-                    b.Navigation("NeededServices");
-
-                    b.Navigation("ProvidedServices");
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -37,7 +37,21 @@
             </select>
         </div>
     </div>
-
+    <div class="form-group row">
+        <!-- Cost Type Filter -->
+        <label for="CostFilter" class="col-sm-2 col-form-label" style="color: gold">Filter By Cost:</label>
+        <div class="col-sm-4">
+            <select name="maxCost" id="CostFilter" class="form-control">
+                <option value="">-- No Maximum --</option>
+                <option value="10"> 10</option>
+                <option value="15"> 15</option>
+                <option value="20"> 20</option>
+                <option value="25"> 25</option>
+                <option value="30"> 30</option>
+                
+            </select>
+        </div>
+    </div>
     <div class="form-group row">
         <div class="col-sm-2">
             <button type="submit" class="btn btn-default" style="background-color: #D7BDF8; color: black;">Filter</button>
@@ -70,6 +84,10 @@
                 <span style="font-weight: bold;">Service Type:</span> @post.ServiceType
                 <span class="mx-3">|</span>
                 <span style="font-weight: bold;">Post Type:</span> @post.PostType
+                <span class="mx-3">|</span>
+                <span style="font-weight: bold;">Cost per Hour:</span> @post.Cost
+
+                <a href="@Url.Action("Edit", "ForumPosts", new { id = post.Id })" class="btn btn-primary btn-sm float-right" style="margin-left: 10px;">Edit</a>
             </div>
         </div>
     }

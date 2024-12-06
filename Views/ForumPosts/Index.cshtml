@@ -46,48 +46,35 @@
 </form>
 
 <!-- Posts Table --> 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="color: gold; font-weight: bold;">@Html.DisplayNameFor(model => model.FirstOrDefault().Title)</th>
-            <th style="color: gold; font-weight: bold;">@Html.DisplayNameFor(model => model.FirstOrDefault().Description)</th>
-            <th style="color: gold; font-weight: bold;">Post Type</th>
-            <th style="color: gold; font-weight: bold;">Service Type</th>
-            <th>
-                
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Any())
+@if (Model.Any())
+{
+    @foreach (var post in Model)
+    {
+        <div class="card mb-4">
+            <!-- Header with Title and Creator Profile -->
+            <div class="card-header" style="background-color: #D7BDF8;">
+                <h3 style="margin: 0; color: black; text-align: left;">
+                    @post.Title
+                 <!--  <a class="btn btn-default" style="background-color: gold; color: black; text-align:right;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @User.Identity?.Name</a> -->
+                </h3>
+               
+            </div>
 
-        {
-         
-           
-            foreach (var item in Model)  
+            <!-- Description -->
+            <div class="card-body" style="background-color: #F9F9F9;">
+                <p style="margin: 0; color: black; ">@post.Description</p>
+            </div>
 
-            {
-                <tr>
-                    <td style = "color: gold; font-weight: bold;">@Html.DisplayFor(modelItem => item.Title) </td >
-                    <td style = "color: gold; font-weight: bold;">@Html.DisplayFor(modelItem => item.Description) </td>
-                    <td style = "color: gold; font-weight: bold;" >@item.PostType </td>
-                    <td style="color: gold; font-weight: bold;">@item.ServiceType </td>
-                    <td>
-                        <a class="btn btn-default" style="background-color: #D7BDF8; color: black;" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-default" style="background-color: #D7BDF8; color: black;" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-default" style="background-color: #D7BDF8; color: black;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-
-        }
-
-        else
-
-        {
-            <tr>
-                <td colspan="4" class="text-center">No posts available.</td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <!-- Footer with Service Type and Post Type -->
+            <div class="card-footer text-muted" style="background-color: #EEE;">
+                <span style="font-weight: bold;">Service Type:</span> @post.ServiceType
+                <span class="mx-3">|</span>
+                <span style="font-weight: bold;">Post Type:</span> @post.PostType
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p class="text-center" style="color: gray;">No posts available.</p>
+}

@@ -239,6 +239,9 @@ namespace Tiger_Tasks.Migrations
                     b.Property<int>("PostType")
                         .HasColumnType("int");
 
+                    b.Property<int>("ServiceType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

@@ -6,6 +6,7 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public PostType PostType { get; set; }
+        public ServiceType ServiceType { get; set; }
         public ForumPost() 
         {
 
@@ -17,4 +18,11 @@
         HelpOffered
     }
 
+    public enum ServiceType
+    {
+        ITHelp,
+        ManualLabor,
+        Tutoring,
+        StudyGroup
+    }
 }

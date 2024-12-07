@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +16,11 @@ namespace Tiger_Tasks.Controllers
     public class ForumPostsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ForumPostsController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public ForumPostsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: ForumPosts
@@ -86,6 +89,12 @@ namespace Tiger_Tasks.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Set the UserId to the logged-in user's ID
+                var user = await _userManager.GetUserAsync(User);
+
+                //Assign userId when post is created
+                forumPost.UserId = user.Id;
+
                 _context.Add(forumPost);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -180,7 +189,18 @@ namespace Tiger_Tasks.Controllers
 
             return View(forumPost);
         }
+        public async Task<IActionResult> MyPosts()
+        {
+            // Get the logged-in user's ID from the User context
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);  // Or use User.Identity.Name for username
 
+            // Fetch all posts created by the logged-in user
+            var userPosts = await _context.ForumPost
+                                          .Where(p => p.UserId == userId)
+                                          .ToListAsync();
+
+            return View(userPosts);
+        }
         // POST: ForumPosts/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

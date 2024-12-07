@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Tiger_Tasks.Models.ForumPost>
+
+@{
+    ViewData["Title"] = "My Forum Posts";
+}
+
+<h1>My Forum Posts</h1>
+
+<!-- Display all posts made by the logged-in user -->
+@if (Model.Any())
+
+{
+
+    foreach (var post in Model)
+
+    {
+        <div class="card mb-4">
+            <div class="card-header" style="background-color: #D7BDF8;">
+                <h3 style="margin: 0; color: black; text-align: left;">
+                    @post.Title
+                </h3>
+            </div>
+            <div class="card-body" style="background-color: #F9F9F9;">
+                <p style="margin: 0; color: black;">@post.Description</p>
+            </div>
+            <div class="card-footer text-muted" style="background-color: #EEE;">
+                <span style="font-weight: bold;">Service Type:</span> @post.ServiceType
+                <span class="mx-3">|</span>
+                <span style="font-weight: bold;">Post Type:</span> @post.PostType
+                <span class="mx-3">|</span>
+                <span style="font-weight: bold;">Cost per Hour:</span> @post.Cost
+                <a href="@Url.Action("Edit", "ForumPosts", new { id = post.Id })" class="btn btn-default" style="background-color: #D7BDF8; color: black;">Edit</a>
+                <a href="@Url.Action("Delete", "ForumPosts", new { id = post.Id })" class="btn btn-default" style="background-color: #D7BDF8; color: black;">Delete</a>
+            </div>
+        </div>
+    }
+
+}
+
+else
+
+{
+    <p class="text-center" style="color: gray;">You have not created any posts yet.</p>
+}

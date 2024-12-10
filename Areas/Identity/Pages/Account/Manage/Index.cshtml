@@ -4,50 +4,99 @@
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/Tiger_Tasks.styles.css" asp-append-version="true" />
 
-
-<h3>@ViewData["Title"]</h3>
+<h2>@ViewData["Title"]</h2>
 <partial name="_StatusMessage" for="StatusMessage" />
 
-
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
+        <!--Profile Container-->
+        <div class="profile-container">
+            <h2>Account Information</h2>
 
-            <!-- Bio Input Field -->
-            <div class="form-floating mb-3">
-                <textarea asp-for ="Input.Bio" class="form-control" id="bio"  placeholder="Enter your bio" style="height: 150px;"></textarea>
-                <label for="bio">Bio</label>
-            </div>
+            <!--Profile Information-->
 
-            <!-- Services Needed Input Field -->
-            <div class="form-floating mb-3">
-                <textarea asp-for="Input.ServicesNeeded" class="form-control" id="services-needed"  placeholder="List services you need" style="height: 150px;"></textarea>
-                <label for="services-needed">Services Needed</label>
-            </div>
+            <div class="profile-info mb-3 ">
+                <p><strong>Username: </strong>@Model.Username</p>
+                <p><strong>Phone Number: </strong>@Model.Input.PhoneNumber</p>
+                <p><strong>Bio: </strong>@Model.Input.Bio</p>
+                <p><strong>Service Needed: </strong>@Model.Input.ServicesNeeded</p>
+                <p><strong>Service Provided: </strong>@Model.Input.ServicesProvided</p>
 
-            <!-- Services Provided Input Field -->
-            <div class="form-floating mb-3">
-                <textarea asp-for="Input.ServicesProvided" class="form-control" id="services-provided" placeholder="List services you can provide" style="height: 150px;"></textarea>
-                <label for="services-provided">Services Provided</label>
             </div>
-
-            <!-- Save Button -->
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
+            <!--Edit Profile Button-->
+            <button class="btn btn-warning" id="editProfileBtn">Edit Profile</button>
+        </div>
     </div>
 </div>
 
+<!--Popup Modal Form for Editing Profile-->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="profile-form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <!--Username (Display only)-->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+                        <label asp-for="Username" class="form-label"></label>
+                    </div>
+
+                    <!--Phone Number -->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
+                        <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <!-- Bio Input Field -->
+                    <div class="form-floating mb-3">
+                        <label asp-for="Input.Bio" class="form-label"></label>
+                        <span asp-validation-for="Input.Bio" class="text-danger"></span>
+                        <input asp-for="Input.Bio" class="form-control" style="height: 150px;" placeholder="Please enter your bio."/>
+                    </div>
+
+                    <!-- Services Needed Input Field -->
+                    <div class="form-floating mb-3">
+                        <label asp-for="Input.ServicesNeeded" class="form-label"></label>
+                        <span asp-validation-for="Input.ServicesNeeded" class="text-danger"></span>
+                        <input asp-for="Input.ServicesNeeded" class="form-control" style="height: 150px;" placeholder="Please enter the services you need."/>
+                    </div>
+
+                    <!-- Services Provided Input Field -->
+                    <div class="form-floating mb-3">
+                        <label asp-for="Input.ServicesProvided" class="form-label"></label>
+                        <span asp-validation-for="Input.ServicesProvided" class="text-danger"></span>
+                        <input asp-for="Input.ServicesProvided" class="form-control" style="height: 150px;" placeholder="Please enter the services you can provide."/>
+                    </div>
+            <!-- Save Button -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            </div>
+            </form>
+         </div>
+     </div>
+  </div>
+  </div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <!--Script to toggle modal visibility -->
+    <script>
+        document.getElementById('editProfileBtn').addEventListener('click', function () {
+            var myModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+            myModal.show(); //Show the model
+        });
+
+    </script>
 }
+

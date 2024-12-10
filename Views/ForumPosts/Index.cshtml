@@ -69,9 +69,12 @@
             <div class="card-header" style="background-color: #D7BDF8;">
                 <h3 style="margin: 0; color: black; text-align: left;">
                     @post.Title
-                 <!--  <a class="btn btn-default" style="background-color: gold; color: black; text-align:right;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @User.Identity?.Name</a> -->
                 </h3>
-               
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-default" style="background-color: gold; color: black; text-align:right;"
+                       href="@Url.Action("Index", "Profile", new { userId = post.UserId })" class="btn btn-info">View Creator's Profile</a>
+                   
+                </div>
             </div>
 
             <!-- Description -->
@@ -89,6 +92,7 @@
 
               
             </div>
+          
         </div>
     }
 }

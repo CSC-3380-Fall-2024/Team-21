@@ -10,7 +10,7 @@
 
         public decimal Cost { get; set; } // Add Cost property
         public string? UserId { get; set; }  // Store the user ID here
-        public ApplicationUser User { get; set; }  // This is for navigation to the user 
+        //public ApplicationUser User { get; set; }  // This is for navigation to the user 
     
     public ForumPost() 
         {

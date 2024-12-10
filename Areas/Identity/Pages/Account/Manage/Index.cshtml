@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
+   
 }
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/Tiger_Tasks.styles.css" asp-append-version="true" />
@@ -49,7 +50,7 @@
                         <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
                         <label asp-for="Username" class="form-label"></label>
                     </div>
-
+                  
                     <!--Phone Number -->
                     <div class="form-floating mb-3">
                         <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />

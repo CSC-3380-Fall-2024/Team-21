@@ -86,12 +86,23 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
             };
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string userId)
         {
-            var user = await _userManager.GetUserAsync(User);
+            ApplicationUser user;
+
+            // If a userId is provided, load the profile of that user; otherwise, load the current user's profile
+            if (!string.IsNullOrEmpty(userId))
+            {
+                user = await _userManager.FindByIdAsync(userId);
+            }
+            else
+            {
+                user = await _userManager.GetUserAsync(User);
+            }
+
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Unable to load user with ID '{userId}'.");
             }
 
             await LoadAsync(user);

@@ -59,6 +59,15 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Bio")]
+            public string Bio { get; set; }
+
+            [Display(Name = "Services Needed")]
+            public string ServicesNeeded { get; set; }
+
+            [Display(Name = "Services Provided")]
+            public string ServicesProvided { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -70,7 +79,10 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Bio = user.Bio,
+                ServicesNeeded = user.ServicesNeeded,
+                ServicesProvided = user.ServicesProvided
             };
         }
 
@@ -93,6 +105,7 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
+           
 
             if (!ModelState.IsValid)
             {
@@ -100,15 +113,19 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            user.PhoneNumber = Input.PhoneNumber;
+            user.Bio = Input.Bio;
+            user.ServicesNeeded = Input.ServicesNeeded;
+            user.ServicesProvided = Input.ServicesProvided;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                foreach (var error in result.Errors)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
+                return Page();
             }
 
             await _signInManager.RefreshSignInAsync(user);

@@ -26,19 +26,19 @@
 
             <!-- Bio Input Field -->
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="bio" name="Bio" placeholder="Enter your bio" style="height: 150px;"></textarea>
+                <textarea asp-for ="Input.Bio" class="form-control" id="bio"  placeholder="Enter your bio" style="height: 150px;"></textarea>
                 <label for="bio">Bio</label>
             </div>
 
             <!-- Services Needed Input Field -->
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="services-needed" name="ServicesNeeded" placeholder="List services you need" style="height: 150px;"></textarea>
+                <textarea asp-for="Input.ServicesNeeded" class="form-control" id="services-needed"  placeholder="List services you need" style="height: 150px;"></textarea>
                 <label for="services-needed">Services Needed</label>
             </div>
 
             <!-- Services Provided Input Field -->
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="services-provided" name="ServicesProvided" placeholder="List services you can provide" style="height: 150px;"></textarea>
+                <textarea asp-for="Input.ServicesProvided" class="form-control" id="services-provided" placeholder="List services you can provide" style="height: 150px;"></textarea>
                 <label for="services-provided">Services Provided</label>
             </div>
 

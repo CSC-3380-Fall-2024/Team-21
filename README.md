@@ -43,6 +43,6 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 10.) Once in this folder you will see a connection called "Secrets.json" click on the three dots to the right and select manage user secrets 
 11.) Once inside the file copy and paste the following creditals inbetween the two curly braces, verify there is nothing else within this file
 "ConnectionStrings:DatabaseConnection": "Data Source=tcp:tigertasks2.database.windows.net,1433;Initial Catalog=TigerTasks2Db;User Id=Tester@tigertasks2;Password=DucksAreCool25"
-12.) At the top of visual studio there is a green run button with a dropdown, sleect the dropdown and either choose IIS Express or HTTP and then run the program 
+12.) At the top of visual studio there is a green run button with a dropdown, select the dropdown and either choose IIS Express or HTTP and then run the program 
 13.) Once you have run the program you can create account and login, youll be able to view and create forum posts as well as view other user's profiles
 14.) Under your own profile button located in the top right you will have access to create/edit your user profile as well as see all of your own Forum Posts

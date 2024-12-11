@@ -4,6 +4,7 @@ For this Project we are using Visual Studio 2022, along with an Azure SQL databa
 Follow the steps bellow after cloning the repostiory to run the project 
 Note: Will not run correclty On MacOS because of the SQL database
 --Must use a windows or linux OS
+Note: All of the project code is lcoated within the Master Branch, navagation to that branch is detailed below
 
 Download Visual Studio if you dont already have it: https://visualstudio.microsoft.com/downloads/
 

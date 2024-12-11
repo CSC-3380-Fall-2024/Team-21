@@ -2,10 +2,34 @@
 Welcome To the Tiger Tasks Project
 For this Project we are using Visual Studio 2022, along with an Azure SQL database 
 Follow the steps bellow after cloning the repostiory to run the project 
-Note: Will not run correclty On MacOS because of SQL database
+Note: Will not run correclty On MacOS because of the SQL database
 --Must use a windows or linux OS
 
 Download Visual Studio if you dont already have it: https://visualstudio.microsoft.com/downloads/
+
+Before Checking for required packages clone and open the project in visual studio as most of the packages will automatically install
+
+Required Packages:
+Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Microsoft.AspNetCore.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+Microsoft.AspNetCore.Identity.UI
+Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+In order to verify you have these packages:
+After you have cloned the repositry and opened it in Visual Studio, open the tools menu and select Nuget Package manager and then select Manage Nuget Package for solutions
+This will show you the packages you have installed
+If you are missing any go back to tools and select Nuget Package Manager and then select Package Manager Console, Then run one of the following commands for whichever package youre missing
+
+Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+Install-Package Microsoft.AspNetCore.Identity.UI
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 1.) Once you have cloned the repository in Visual Studio, open the project 
 2.) On the right side of the page there should be a window labeled Solution Explorer click on Tiger Tasks SLN file 

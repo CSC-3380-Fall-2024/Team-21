@@ -56,9 +56,11 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            /// 
+            // Properties representing the user's phone number, bio, and services offered or needed
             [Phone]
             [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            public string PhoneNumber { get; set; }         
 
             [Display(Name = "Bio")]
             public string Bio { get; set; }
@@ -72,6 +74,8 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadAsync(ApplicationUser user)
         {
+
+            // Retrieve the user's username and phone number using the UserManager service
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
@@ -86,6 +90,7 @@ namespace Tiger_Tasks.Areas.Identity.Pages.Account.Manage
             };
         }
 
+        // Method to handle the HTTP GET request for the profile page
         public async Task<IActionResult> OnGetAsync(string userId)
         {
             ApplicationUser user;
